@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Desafio - Consumo Local de API</title>
+</head>
+<body>
+    <h1>Tarefas Consumidas da API Local</h1>
+    <ul id="lista"></ul>
+
+    <script>
+        fetch('http://127.0.0.1:8000/api/tarefas')
+            .then(res => res.json())
+            .then(resposta => {
+                const ul = document.getElementById('lista');
+                resposta.data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.titulo} - Criado em: ${item.created_at}`;
+                    ul.appendChild(li);
+                });
+            });
+    </script>
+</body>
+</html>
